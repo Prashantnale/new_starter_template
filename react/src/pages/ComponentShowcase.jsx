@@ -27,6 +27,8 @@ import Breadcrumbs from '../components/common/Breadcrumbs';
 import ProgressBar from '../components/common/ProgressBar';
 import Drawer from '../components/common/Drawer';
 import EmptyState from '../components/common/EmptyState';
+import NotFound from '../components/common/NotFound';
+
 
 import { 
   User, Mail, Lock, Code, Eye, Layers, Send, Trash, Plus, Settings, 
@@ -47,7 +49,9 @@ const ComponentShowcase = () => {
   const [currentPage, setCurrentPage] = useState(1);
   const [progressValue, setProgressValue] = useState(65);
   const [isDrawerOpen, setIsDrawerOpen] = useState(false);
+  const [isNotFoundPreview, setIsNotFoundPreview] = useState(false);
   const [selectValue, setSelectValue] = useState('in');
+
   const { addToast } = useToast();
 
 
@@ -147,7 +151,14 @@ const ComponentShowcase = () => {
                 </div>
             </div>
           </Modal>
+
+          {isNotFoundPreview && (
+            <div className="fixed inset-0 z-[100] overflow-y-auto">
+              <NotFound onBackHome={() => setIsNotFoundPreview(false)} />
+            </div>
+          )}
         </section>
+
 
         {/* Section: Layout Components (Cards) */}
         <section className="space-y-8">
@@ -328,8 +339,11 @@ const ComponentShowcase = () => {
               variant="danger"
               confirmText="Delete Now"
             />
+
+            <Button variant="outline" icon={Eye} onClick={() => setIsNotFoundPreview(true)}>Preview 404 Page</Button>
           </div>
         </section>
+
 
         {/* Section: Batch 4 - Advanced Components */}
         <section className="space-y-12">
