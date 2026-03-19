@@ -39,7 +39,7 @@ const Table = ({
               >
                 {columns.map((col, colIdx) => (
                   <td key={colIdx} className="px-6 py-4 text-sm text-gray-600 dark:text-gray-300">
-                    {col.render ? col.render(row[col.accessor], row) : row[col.accessor]}
+                    {col.render ? col.render(row[col.accessor], rowIdx, row) : row[col.accessor]}
                   </td>
                 ))}
               </tr>
